@@ -1,7 +1,7 @@
 import peeweedbevolve # For migration
 from flask import Flask, render_template, request, flash, redirect, url_for
 from models import db
-from models import Store
+from models import Store, Warehouse
 
 app = Flask(__name__)
 
@@ -31,7 +31,7 @@ def index():
 
 @app.route("/store")   
 def store():
-   return render_template('store.html')   
+   return render_template('store.html')      
 
 @app.route("/store_form", methods=["POST"])
 def store_form():
@@ -43,6 +43,24 @@ def store_form():
       return redirect(url_for('store'))
    else:   
       return render_template('store.html',store_name=store_name)
+
+@app.route("/warehouse")
+def warehouse():
+   stores = Store.select() # Selects the whole table 
+   return render_template('warehouse.html', stores=stores)
+
+@app.route("/warehouse_form", methods=["POST"])
+def warehouse_form():
+   warehouse_store = request.form.get('warehouse_store') # getting value from warehouse.html
+   warehouse_location = request.form.get('warehouse_location') # getting value from warehouse.html
+   # breakpoint()
+   warehouse_instance = Warehouse(store_id=warehouse_store, location = warehouse_location) # creating an instance (row) of Warehouse 
+   if warehouse_instance.save():
+      flash("Warehouse successfully saved")
+      return redirect(url_for('warehouse'))
+   else:   
+      return render_template('warehouse.html',warehouse_location=warehouse_location, warehouse_store=warehouse_store)   
+
    
 
 if __name__ == '__main__':
