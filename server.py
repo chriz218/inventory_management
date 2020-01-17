@@ -1,4 +1,4 @@
-import peeweedbevolve # new; must be imported before models
+import peeweedbevolve # For migration
 from flask import Flask, render_template, request
 from models import db
 
@@ -20,6 +20,11 @@ def migrate(): # new
 @app.route("/")
 def index():
    return render_template('index.html')
+
+@app.route("/store")   
+def store():
+   store_name = request.args.get('store_name')
+   return render_template('store.html',store_name=store_name)   
 
 if __name__ == '__main__':
    app.run()
