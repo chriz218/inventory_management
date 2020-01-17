@@ -33,9 +33,9 @@ def index():
 def store():
    return render_template('store.html')   
 
-@app.route("/store_form")
+@app.route("/store_form", methods=["POST"])
 def store_form():
-   store_name = Store(name=request.args.get('store_name'))
+   store_name = Store(name=request.form.get('store_name'))
    # store_name = request.args.get('store_name')
    # save_store_name = Store(name=store_name) # Create an instance (Store is the table in models.py)
    if store_name.save():
