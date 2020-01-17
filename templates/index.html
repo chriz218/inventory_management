@@ -1,8 +1,5 @@
 {% extends "_layout.html" %}
 {% block content %}
 <h1 style="color: red">Homepage</h1>
-{% if store_name %}
-    <p>{{store_name}} has been successfully added. Would you like to add another?</p>
-{% endif %}
 <a href="{{ url_for('store') }}" class="btn">Click here to add a store</a>
 {% endblock %}
