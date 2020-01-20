@@ -1,0 +1,21 @@
+{% extends "_layout.html" %}
+{% block content %}
+<h1 style="color:red;">All Stores</h1>
+<table style="width:100%">
+    <tr>
+      <th style="color:#007BFF">Store Name</th>
+      <th style="color:#007BFF">Number of Warehouses</th>
+      <th style="color:#007BFF">Edit Store Name</th>
+      <th style="color:#007BFF">Delete Store</th>
+    </tr>
+    {% for store in stores %}
+        <tr>
+            <td>{{store.name}}</td>
+            <td>{{store.warehouses | length}}</td>
+            <td><a href="{{ url_for('store_info', id = store.id) }}" class="btn" style="border: solid; color: #007BFF; background-color: #007BFF; color: white; border-radius: 7px;">Edit Store</a></td>
+            <td><form action="{{ url_for('delete') }}" method="POST"><button type="submit" name="delete-btn" value="{{ store.id }}" class="btn btn-primary" style="border:red;background-color:red">Delete Store</button></form></td>
+        </tr>    
+    {% endfor %}
+
+  </table>
+{% endblock %}

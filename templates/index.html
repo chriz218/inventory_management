@@ -1,5 +1,7 @@
 {% extends "_layout.html" %}
 {% block content %}
 <h1 style="color: red">Homepage</h1>
-<a href="{{ url_for('store') }}" class="btn">Click here to add a store</a>
+<a href="{{ url_for('store') }}" class="btn" style="border: solid; color: #007BFF; background-color: #007BFF; color: white; border-radius: 7px;">Add a store</a>
+<a href="{{ url_for('warehouse') }}" class="btn" style="border: solid; color: #007BFF; background-color: #007BFF; color: white; border-radius: 7px;">Add a warehouse</a>
+<a href="{{ url_for('content') }}" class="btn" style="border: solid; color: #007BFF; background-color: #007BFF; color: white; border-radius: 7px;">View all Stores</a>
 {% endblock %}

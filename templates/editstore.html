@@ -1,0 +1,12 @@
+{% extends "_layout.html" %}
+{% block content %}
+<form action="{{ url_for('store_info_edit', id=store_obj.id) }}" method="POST">
+  <h1 style="color:red;">{{store_obj.name}}</h1>
+  <div class="form-group">
+    <p>Number of warehouses: {{count_no_warehouse}}</p>
+    <label for="store_name">Store Name:</label>
+    <input type='text' name='store_name' class="form-control" />
+  </div>
+  <input type="submit" value="Edit Store" class="btn btn-primary"/>
+</form>
+{% endblock %}
